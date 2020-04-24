@@ -22,7 +22,6 @@ def read_data():
     '''
     global movie_title, movie_year, movie_genres, movie_plot, movie_imdb_rating, user_ratings
     # read movie titles, years, and genres
-    #with open('/content/gdrive/My Drive/ML/HW/movies.csv') as csv_file:
     with open('ml-latest-small/movies.csv') as csv_file:
         csv_reader = csv.reader(csv_file)
         line_num = 0
@@ -44,8 +43,8 @@ def read_data():
                 else:
                     movie_genres[movieId] = genres.split('|')
             line_num += 1
+            
     # read movie plots
-    #with open('/content/gdrive/My Drive/ML/HW/plots-imdb.csv') as csv_file:
     with open('ml-latest-small/plots-imdb.csv') as csv_file:
         csv_reader = csv.reader(csv_file)
         line_num = 0
@@ -55,8 +54,8 @@ def read_data():
                 plot = row[1]
                 movie_plot[movieId] = plot
             line_num += 1
+            
     # read movie IMDb ratings
-    #with open('/content/gdrive/My Drive/ML/HW/ratings-imdb.csv') as csv_file:
     with open('ml-latest-small/ratings-imdb.csv') as csv_file:
         csv_reader = csv.reader(csv_file)
         line_num = 0
@@ -66,8 +65,8 @@ def read_data():
                 rating = float(row[1])
                 movie_imdb_rating[movieId] = rating
             line_num += 1
+            
     # read user ratings of movies
-    #with open('/content/gdrive/My Drive/ML/HW/ratings.csv') as csv_file:
     with open('ml-latest-small/ratings.csv') as csv_file:
         csv_reader = csv.reader(csv_file)
         line_num = 0
@@ -405,10 +404,12 @@ def avgKemenyDistance(predRank, baseRank):
     return k/j
 
 if __name__ == "__main__":
-    #global movie_title, ranking_limit
-    #print("Reading data...", flush=True)
+    # read data
+    print("Reading data...")
     read_data()
-    limit = 10
+    
+    # number of movies that will be included into data set from each user
+    limit = 100
 
     # build data set
     print("Building Data Set ...")
